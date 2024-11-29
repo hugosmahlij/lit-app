@@ -1,7 +1,8 @@
 import { Router } from '@vaadin/router';
 import { LitElement, html, css } from 'lit';
+import { AuthMixin } from '../mixins/auth-mixin';
 
-export class RouterApp extends LitElement {
+export class RouterApp extends AuthMixin(LitElement) {
   firstUpdated() {
     const router = new Router(this.shadowRoot.querySelector('#outlet'));
     router.setRoutes([

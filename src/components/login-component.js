@@ -54,10 +54,15 @@ export class LoginComponent extends LitElement {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.dispatchCustomEvent('login-success', {
-      email: this.email,
-      password: this.password,
-    });
+
+    if (this.email === 'user@example.com' && this.password === 'asd') {
+      localStorage.setItem('isAuthenticated', true);
+      this.dispatchCustomEvent('login-success', { email: this.email });
+    } else {
+      this.dispatchCustomEvent('login-error', {
+        error: 'Invalid credentials.',
+      });
+    }
 
     this.initProperties();
   }
