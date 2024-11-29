@@ -1,10 +1,11 @@
 import { LitElement, html, css } from 'lit';
+import { AuthMixin } from '../mixins/auth-mixin.js';
 
 import '@dile/ui/components/nav/nav.js';
 import '@dile/ui/components/menu-hamburger/menu-hamburger.js';
 import '../layouts/auth-layout.js';
 
-export class HomePage extends LitElement {
+export class HomePage extends AuthMixin(LitElement) {
   static styles = [
     css`
       :host {
@@ -18,6 +19,16 @@ export class HomePage extends LitElement {
       }
     `,
   ];
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.redirectIfNotAuthenticated(); // Protege la ruta
+  }
+
+  handleLogout() {
+    localStorage.removeItem('isAuthenticated');
+    window.location.href = '/login';
+  }
 
   render() {
     return html`
