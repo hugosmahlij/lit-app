@@ -3,8 +3,7 @@ import { LitElement, html, css } from 'lit';
 export class LoginComponent extends LitElement {
   constructor() {
     super();
-    this.email = '';
-    this.password = '';
+    this.initProperties();
   }
 
   static get properties() {
@@ -14,66 +13,73 @@ export class LoginComponent extends LitElement {
     };
   }
 
-  static styles = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
-    }
+  static styles = [
+    css`
+      :host {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 300px;
-      max-width: 100%;
-    }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 300px;
+        max-width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        padding: 1pc;
+      }
 
-    input {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+      input[type='email'],
+      input[type='password'] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
 
-    button {
-      padding: 8px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  `;
+      button {
+        padding: 8px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    `,
+  ];
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.dispatchCustomEvent('login-success', {
+      email: this.email,
+      password: this.password,
+    });
+
+    this.initProperties();
+  }
+
+  initProperties() {
+    this.email = '';
+    this.password = '';
+  }
+
+  dispatchCustomEvent(eventName, detail) {
+    const event = new CustomEvent(eventName, {
+      detail,
+      bubbles: true,
+      composed: true,
+    });
+
+    this.dispatchEvent(event);
+  }
 
   handleInputChange(event) {
     const { name, value } = event.target;
     this[name] = value;
-
-    console.log(`Updated ${name}:`, value);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    // Validación simple para login
-    const validEmail = 'user@test.com';
-    const validPassword = '1234';
-
-    console.log('Login attempt with:', this.email, this.password);
-
-    if (this.email === validEmail && this.password === validPassword) {
-      console.log('Login successful');
-      this.dispatchEvent(new CustomEvent('login-success', { bubbles: true }));
-    } else {
-      console.log('Login failed: Invalid credentials');
-      this.dispatchEvent(
-        new CustomEvent('login-error', {
-          detail: { error: 'Invalid credentials' },
-          bubbles: true,
-        })
-      );
-    }
   }
 
   render() {
@@ -81,22 +87,22 @@ export class LoginComponent extends LitElement {
       <form @submit=${this.handleSubmit}>
         <label for="email">Email:</label>
         <input
+          required
           type="email"
           id="email"
           name="email"
           .value=${this.email}
           @input=${this.handleInputChange}
-          required
         />
 
         <label for="password">Password:</label>
         <input
+          required
           type="password"
           id="password"
           name="password"
           .value=${this.password}
           @input=${this.handleInputChange}
-          required
         />
 
         <button type="submit">Login</button>
@@ -104,5 +110,4 @@ export class LoginComponent extends LitElement {
     `;
   }
 }
-
 customElements.define('login-component', LoginComponent);

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dile/ui": "^2.4.3",
     "@vaadin/router": "^2.0.0",
     "lit": "^3.2.1"
   },

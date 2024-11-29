@@ -1,22 +1,26 @@
 import { Router } from '@vaadin/router';
-import '../pages/login-page.js';
-import '../pages/home-page.js';
+import { LitElement, html, css } from 'lit';
 
-// Define el ruteo al cargar la aplicación
-const outlet = document.querySelector('#outlet');
+export class RouterApp extends LitElement {
+  firstUpdated() {
+    const router = new Router(this.shadowRoot.querySelector('#outlet'));
+    router.setRoutes([
+      { path: '/', redirect: '/login' },
+      { path: '/home', component: 'home-page' },
+      { path: '/login', component: 'login-page' },
+    ]);
+  }
 
-const router = new Router(outlet);
-
-router.setRoutes([
-  { path: '/', redirect: '/login' },
-  { path: '/login', component: 'login-page' },
-  {
-    path: '/home',
-    component: 'home-page',
-    action: () => {
-      if (!localStorage.getItem('userAuthenticated')) {
-        return Router.go('/login');
+  static styles = [
+    css`
+      :host {
+        width: 100%;
       }
-    },
-  },
-]);
+    `,
+  ];
+
+  render() {
+    return html` <div id="outlet"></div> `;
+  }
+}
+customElements.define('router-app', RouterApp);

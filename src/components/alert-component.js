@@ -22,7 +22,7 @@ export class AlertComponent extends LitElement {
         border-radius: 4px;
         color: white;
         text-align: center;
-        background-color: var(--color-primary, blue);
+        background-color: var(--color-primary, blue)
       }
 
       .success {

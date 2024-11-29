@@ -1,20 +1,40 @@
-import { html, LitElement } from 'lit';
-import { AuthMixin } from '../mixins/auth-mixin';
+import { LitElement, html, css } from 'lit';
 
-export class HomePage extends AuthMixin(LitElement) {
-  firstUpdated() {
-    this.redirectIfNotAutheticated();
-  }
+import '@dile/ui/components/nav/nav.js';
+import '@dile/ui/components/menu-hamburger/menu-hamburger.js';
+import '../layouts/auth-layout.js';
 
-  handleLogout() {
-    this.logOut();
-  }
+export class HomePage extends LitElement {
+  static styles = [
+    css`
+      :host {
+        width: 100%;
+        --dile-primary-color: #464444;
+      }
+
+      h1,
+      p {
+        color: #000;
+      }
+    `,
+  ];
 
   render() {
     return html`
       <auth-layout>
-        <button @click=${this.handleLogout}>Log out</button>
+        <dile-nav slot="header" menu="right">
+          <h2 slot="title">Home Page</h2>
+          <dile-menu-hamburger slot="menu">
+            <nav slot="menu">
+              <p><a href="one.html">Link one</a></p>
+              <p><a href="two.html">Link two</a></p>
+            </nav>
+          </dile-menu-hamburger>
+          <span slot="actions">Create</span>
+        </dile-nav>
+        <p slot="footer">Todos los derechos reservados</p>
       </auth-layout>
     `;
   }
 }
+customElements.define('home-page', HomePage);
