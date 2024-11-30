@@ -8,11 +8,17 @@ export class AuthLayout extends LitElement {
         grid-template-rows: auto 1fr auto;
         width: 100%;
         min-height: 100vh;
+        background-color: var(--background-color);
       }
 
       header,
       footer {
-        background-color: #ccc;
+        background-color: white;
+        padding: 16px;
+        text-align: center;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        margin: 8px;
       }
 
       footer {
@@ -20,8 +26,15 @@ export class AuthLayout extends LitElement {
       }
 
       main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 16px;
-        background-color: white;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        margin: 8px;
       }
     `,
   ];

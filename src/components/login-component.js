@@ -25,29 +25,45 @@ export class LoginComponent extends LitElement {
       form {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
         width: 300px;
         max-width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        padding: 1pc;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        font-size: 14px;
+        color: var(--text-color);
+        margin-bottom: 4px;
       }
 
       input[type='email'],
       input[type='password'] {
-        padding: 8px;
+        padding: 10px;
         border: 1px solid #ccc;
-        border-radius: 4px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       button {
-        padding: 8px;
-        background-color: #007bff;
-        color: white;
+        padding: 10px;
+        background-color: var(--primary-color);
+        color: #fff;
         border: none;
-        border-radius: 4px;
+        border-radius: var(--border-radius);
         cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
       }
     `,
   ];

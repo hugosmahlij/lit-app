@@ -12,25 +12,25 @@ export class AlertComponent extends LitElement {
     css`
       :host {
         display: block;
-        padding: 8px;
         margin: 8px 0;
-        border-radius: 4px;
       }
 
       .alert {
-        padding: 8px;
-        border-radius: 4px;
-        color: white;
+        padding: 12px;
+        border-radius: var(--border-radius);
         text-align: center;
-        background-color: var(--color-primary, blue)
+        color: #fff;
+        background-color: var(--secondary-color);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(5px);
       }
 
       .success {
-        background-color: var(--color-success, green);
+        background-color: var(--primary-color);
       }
 
       .error {
-        background-color: var(--color-error, red);
+        background-color: #dc3545;
       }
     `,
   ];

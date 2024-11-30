@@ -58,6 +58,19 @@ export class LoginPage extends LitElement {
         align-items: center;
         justify-items: center;
         width: 100%;
+        background-color: var(--background-color);
+      }
+
+      login-component {
+        max-width: 400px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 20px;
+      }
+
+      alert-component {
+        margin-top: 20px;
       }
     `,
   ];

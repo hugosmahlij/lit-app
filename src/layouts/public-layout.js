@@ -4,14 +4,27 @@ export class PublicLayout extends LitElement {
   static styles = [
     css`
       :host {
-        display: block;
-        background-color: #0c0c0c;
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 16px;
+        width: 100%;
         height: 100vh;
+        background: linear-gradient(
+          135deg,
+          rgba(173, 216, 230, 0.8),
+          rgba(240, 248, 255, 0.8)
+        );
+      }
+
+      div {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 32px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
       }
     `,
   ];
