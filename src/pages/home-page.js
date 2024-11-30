@@ -99,8 +99,18 @@ export class HomePage extends AuthMixin(LitElement) {
           <h2 slot="title">Home</h2>
           <dile-menu-hamburger slot="menu">
             <nav slot="menu">
-              <p><a href="one.html">Link one</a></p>
-              <p><a href="two.html">Link two</a></p>
+              <p>
+                <a href="https://github.com/hugosmahlij" target="_blank"
+                  >Github</a
+                >
+              </p>
+              <p>
+                <a
+                  href="https://www.linkedin.com/in/hugosmahlij/"
+                  target="_blank"
+                  >LinkedIn</a
+                >
+              </p>
             </nav>
           </dile-menu-hamburger>
           <span slot="actions"
